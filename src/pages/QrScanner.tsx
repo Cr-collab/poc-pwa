@@ -4,11 +4,14 @@ import { useEffect } from "react";
 // Creates the configuration object for Html5QrcodeScanner.
 
 const Html5QrcodePlugin = () => {
+    // eslint-disable-next-line
+  // @ts-ignore
   function onScanSuccess(decodedText, decodedResult) {
     // handle the scanned code as you like, for example:
     console.log(`Code matched = ${decodedText}`, decodedResult);
   }
-
+  // eslint-disable-next-line
+  // @ts-ignore
   function onScanFailure(error) {
     // handle scan failure, usually better to ignore and keep scanning.
     // for example:

@@ -6,6 +6,8 @@ import { GalleryAccess } from "./pages/TakeTheGalery.tsx";
 
 function App() {
   const [isShowQrCode, setIsShowQrCode] = useState(false);
+    // eslint-disable-next-line
+  // @ts-ignore
   const [qrCode, setQrCode] = useState("Não foi lido");
   // eslint-disable-next-line
   // @ts-ignore

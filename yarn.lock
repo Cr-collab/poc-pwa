@@ -1365,20 +1365,6 @@
     barcode-detector "^3.0.0"
     webrtc-adapter "9.0.1"
 
-"@zxing/browser@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@zxing/browser/-/browser-0.0.7.tgz#5fa7680a867b660f48d3288fdf63e0174ad531c7"
-  optionalDependencies:
-    "@zxing/text-encoding" "^0.9.0"
-
-"@zxing/library@^0.18.3":
-  version "0.18.6"
-  resolved "https://registry.yarnpkg.com/@zxing/library/-/library-0.18.6.tgz#717af8c6c1fd982865e21051afdd7b470ae6674c"
-  dependencies:
-    ts-custom-error "^3.0.0"
-  optionalDependencies:
-    "@zxing/text-encoding" "~0.9.0"
-
 "@zxing/library@^0.19.1":
   version "0.19.3"
   resolved "https://registry.yarnpkg.com/@zxing/library/-/library-0.19.3.tgz#8f8fb119edac43c109e7d74ae240daba04b7f44f"
@@ -1387,7 +1373,7 @@
   optionalDependencies:
     "@zxing/text-encoding" "~0.9.0"
 
-"@zxing/text-encoding@^0.9.0", "@zxing/text-encoding@~0.9.0":
+"@zxing/text-encoding@~0.9.0":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@zxing/text-encoding/-/text-encoding-0.9.0.tgz#fb50ffabc6c7c66a0c96b4c03e3d9be74864b70b"
 
@@ -2589,6 +2575,10 @@ jsonpointer@^5.0.0:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/jsonpointer/-/jsonpointer-5.0.1.tgz#2110e0af0900fd37467b5907ecd13a7884a1b559"
 
+jsqr@^1.2.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/jsqr/-/jsqr-1.4.0.tgz#8efb8d0a7cc6863cb6d95116b9069123ce9eb2d1"
+
 keyv@^4.5.4:
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-4.5.4.tgz#a879a99e29452f942439f2a405e3af8b31d4de93"
@@ -2856,7 +2846,7 @@ pretty-bytes@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-6.1.1.tgz#38cd6bb46f47afbf667c202cfc754bffd2016a3b"
 
-prop-types@^15.8.1:
+prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   dependencies:
@@ -2904,13 +2894,13 @@ react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
 
-react-qr-reader@^3.0.0-beta-1:
-  version "3.0.0-beta-1"
-  resolved "https://registry.yarnpkg.com/react-qr-reader/-/react-qr-reader-3.0.0-beta-1.tgz#e04a20876409313439959d8e0ea6df3ba6e36d68"
+react-qr-reader@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-qr-reader/-/react-qr-reader-2.2.1.tgz#dc89046d1c1a1da837a683dd970de5926817d55b"
   dependencies:
-    "@zxing/browser" "0.0.7"
-    "@zxing/library" "^0.18.3"
-    rollup "^2.67.2"
+    jsqr "^1.2.0"
+    prop-types "^15.7.2"
+    webrtc-adapter "^7.2.1"
 
 react-qr-scanner@^1.0.0-alpha.11:
   version "1.0.0-alpha.11"
@@ -3026,7 +3016,7 @@ reusify@^1.0.4:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.1.0.tgz#0fe13b9522e1473f51b558ee796e08f11f9b489f"
 
-rollup@^2.43.1, rollup@^2.67.2:
+rollup@^2.43.1:
   version "2.79.2"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.79.2.tgz#f150e4a5db4b121a21a747d762f701e5e9f49090"
   optionalDependencies:
@@ -3059,6 +3049,12 @@ rollup@^4.30.1:
     "@rollup/rollup-win32-ia32-msvc" "4.39.0"
     "@rollup/rollup-win32-x64-msvc" "4.39.0"
     fsevents "~2.3.2"
+
+rtcpeerconnection-shim@^1.2.15:
+  version "1.2.15"
+  resolved "https://registry.yarnpkg.com/rtcpeerconnection-shim/-/rtcpeerconnection-shim-1.2.15.tgz#e7cc189a81b435324c4949aa3dfb51888684b243"
+  dependencies:
+    sdp "^2.6.0"
 
 run-parallel@^1.1.9:
   version "1.2.0"
@@ -3098,6 +3094,10 @@ safe-regex-test@^1.1.0:
 scheduler@^0.26.0:
   version "0.26.0"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.26.0.tgz#4ce8a8c2a2095f13ea11bf9a445be50c555d6337"
+
+sdp@^2.12.0, sdp@^2.6.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/sdp/-/sdp-2.12.0.tgz#338a106af7560c86e4523f858349680350d53b22"
 
 sdp@^3.2.0:
   version "3.2.0"
@@ -3472,7 +3472,7 @@ ts-api-utils@^2.0.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/ts-api-utils/-/ts-api-utils-2.1.0.tgz#595f7094e46eed364c13fd23e75f9513d29baf91"
 
-ts-custom-error@^3.0.0, ts-custom-error@^3.2.1:
+ts-custom-error@^3.2.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/ts-custom-error/-/ts-custom-error-3.3.1.tgz#8bd3c8fc6b8dc8e1cb329267c45200f1e17a65d1"
 
@@ -3649,6 +3649,13 @@ webrtc-adapter@9.0.1:
   resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-9.0.1.tgz#d4efa22ca9604cb2c8cdb9e492815ba37acfa0b2"
   dependencies:
     sdp "^3.2.0"
+
+webrtc-adapter@^7.2.1:
+  version "7.7.1"
+  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-7.7.1.tgz#b2c227a6144983b35057df67bd984a7d4bfd17f1"
+  dependencies:
+    rtcpeerconnection-shim "^1.2.15"
+    sdp "^2.12.0"
 
 whatwg-url@^7.0.0:
   version "7.1.0"

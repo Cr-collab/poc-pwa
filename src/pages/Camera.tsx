@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify"; // Opcional para feedback
-    // eslint-disable-next-line
-        // @ts-ignore
-const CameraPWA = ({stream}) => {
+
+const CameraPWA = () => {
   const videoRef = useRef(null);
   const [photo, setPhoto] = useState(null);
   const [isIos, setIsIos] = useState(false);
@@ -13,10 +12,15 @@ const CameraPWA = ({stream}) => {
   }, []);
 
   // Inicia a câmera
-     // eslint-disable-next-line
-        // @ts-ignore
   const startCamera = async () => {
     try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: "environment", // Câmera traseira
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+        },
+      });
       if (videoRef.current) {
         // eslint-disable-next-line
         // @ts-ignore

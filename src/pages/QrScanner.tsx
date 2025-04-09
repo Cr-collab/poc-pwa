@@ -4,6 +4,7 @@ import { Scanner } from "@yudiel/react-qr-scanner";
 const QRReader = () => {
   const [result, setResult] = useState([]);
   const [hasPermission, setHasPermission] = useState(false);
+  console.log("🚀 ~ QRReader ~ hasPermission:", hasPermission)
   const [isIos, setIsIos] = useState(false);
 
   // Detecta se é iOS
@@ -16,11 +17,12 @@ const QRReader = () => {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
       });
+      console.log("🚀 ~ requestCameraPermission ~ stream:", stream)
       // Câmera liberada!
-      return stream;
       setHasPermission(true);
+      return stream;
     } catch (error) {
-      console.error("Permissão negada:", error);
+      console.log("Permissão negada:", error);
       setHasPermission(false);
       alert(
         "Por favor, permita o acesso à câmera nas configurações do navegador."
@@ -46,7 +48,7 @@ const QRReader = () => {
       )}
 
       {/* Mensagem de permissão */}
-      {hasPermission === false && (
+      {!hasPermission && (
         <div style={{ color: "red", margin: "20px 0" }}>
           Permissão da câmera negada. Por favor, habilite nas configurações.
         </div>

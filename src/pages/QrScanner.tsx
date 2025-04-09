@@ -1,64 +1,32 @@
-import { Html5QrcodeScanner } from "html5-qrcode";
+import { Html5QrcodeScanner, Html5QrcodeScanType } from "html5-qrcode";
 import { useEffect } from "react";
 
-const qrcodeRegionId = "html5qr-code-full-region";
-
 // Creates the configuration object for Html5QrcodeScanner.
-// eslint-disable-next-line
-// @ts-ignore
-const createConfig = (props) => {
-  // eslint-disable-next-line
-  // @ts-ignore
-  const config = {};
 
-  if (props.fps) {
-    // eslint-disable-next-line
-    // @ts-ignore
-    config.fps = props.fps;
-  }
-  if (props.qrbox) {
-    // eslint-disable-next-line
-    // @ts-ignore
-    config.qrbox = props.qrbox;
-  }
-  if (props.aspectRatio) {
-    // eslint-disable-next-line
-    // @ts-ignore
-    config.aspectRatio = props.aspectRatio;
-  }
-  if (props.disableFlip !== undefined) {
-    // eslint-disable-next-line
-    // @ts-ignore
-    config.disableFlip = props.disableFlip;
+const Html5QrcodePlugin = () => {
+  function onScanSuccess(decodedText, decodedResult) {
+    // handle the scanned code as you like, for example:
+    console.log(`Code matched = ${decodedText}`, decodedResult);
   }
 
-  return config;
-};
-// eslint-disable-next-line
-// @ts-ignore
-const Html5QrcodePlugin = (props) => {
+  function onScanFailure(error) {
+    // handle scan failure, usually better to ignore and keep scanning.
+    // for example:
+    console.warn(`Code scan error = ${error}`);
+  }
+
   useEffect(() => {
-    // when component mounts
-    const config = createConfig(props);
-    const verbose = props.verbose === true;
-    // Suceess callback is required.
-    if (!props.qrCodeSuccessCallback) {
-      throw "qrCodeSuccessCallback is required callback.";
-    }
-    // eslint-disable-next-line
-    // @ts-ignore
     const html5QrcodeScanner = new Html5QrcodeScanner(
-      qrcodeRegionId,
-      // eslint-disable-next-line
-      // @ts-ignore
-      config,
-      verbose
-    );
-    html5QrcodeScanner.render(
-      props.qrCodeSuccessCallback,
-      props.qrCodeErrorCallback
+      "reader",
+      {
+        fps: 10,
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+        qrbox: { width: 250, height: 250 },
+      },
+      false
     );
 
+    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
     // cleanup function when component will unmount
     return () => {
       html5QrcodeScanner.clear().catch((error) => {
@@ -67,7 +35,7 @@ const Html5QrcodePlugin = (props) => {
     };
   }, []);
 
-  return <div id={qrcodeRegionId} />;
+  return <div id={"reader"} />;
 };
 
 export default Html5QrcodePlugin;

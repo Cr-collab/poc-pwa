@@ -13,22 +13,24 @@ const QRReader = () => {
 
   const requestCameraPermission = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: true 
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
       });
       // Câmera liberada!
       return stream;
       setHasPermission(true);
     } catch (error) {
       console.error("Permissão negada:", error);
-      setHasPermission(false)
-      alert("Por favor, permita o acesso à câmera nas configurações do navegador.");
+      setHasPermission(false);
+      alert(
+        "Por favor, permita o acesso à câmera nas configurações do navegador."
+      );
     }
-  }
+  };
 
   // Verifica permissão de câmera
   useEffect(() => {
-    requestCameraPermission()
+    requestCameraPermission();
   }, []);
 
   return (
@@ -61,8 +63,15 @@ const QRReader = () => {
           overflow: "hidden",
         }}
       >
-       
-        {hasPermission && <Scanner onScan={(result) => {setResult(result)}} />}
+        {hasPermission && (
+          <Scanner
+            onScan={(result) => {
+              // eslint-disable-next-line
+              // @ts-ignore
+              setResult(result);
+            }}
+          />
+        )}
       </div>
 
       {/* Resultado */}

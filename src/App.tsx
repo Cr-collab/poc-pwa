@@ -3,6 +3,7 @@ import "./App.css";
 import CameraPWA from "./pages/Camera.tsx";
 import Html5QrcodePlugin from "./pages/QrScanner.tsx";
 import { GalleryAccess } from "./pages/TakeTheGalery.tsx";
+import QRScanner from "./pages/QrScanner.tsx";
 
 function App() {
   const [isShowQrCode, setIsShowQrCode] = useState(false);
@@ -20,7 +21,7 @@ function App() {
       </button>
       <h3>QR-CODE : {qrCode}</h3>
       {!isShowQrCode && <CameraPWA />}
-      {isShowQrCode && <Html5QrcodePlugin />}
+      {isShowQrCode && <QRScanner onScan={setQrCode} />}
     </>
   );
 }

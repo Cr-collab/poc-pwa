@@ -1,44 +1,39 @@
-import { Html5QrcodeScanner, Html5QrcodeScanType } from "html5-qrcode";
-import { useEffect } from "react";
+import { Scanner } from "@yudiel/react-qr-scanner";
+import { useEffect, useState } from "react";
+import QrReader from "react-qr-scanner";
 
-// Creates the configuration object for Html5QrcodeScanner.
+const QRScanner = ({ onScan }) => {
+  const [scanning, setScanning] = useState(true);
 
-const Html5QrcodePlugin = () => {
-    // eslint-disable-next-line
-  // @ts-ignore
-  function onScanSuccess(decodedText, decodedResult) {
-    // handle the scanned code as you like, for example:
-    console.log(`Code matched = ${decodedText}`, decodedResult);
-  }
-  // eslint-disable-next-line
-  // @ts-ignore
-  function onScanFailure(error) {
-    // handle scan failure, usually better to ignore and keep scanning.
-    // for example:
-    console.warn(`Code scan error = ${error}`);
-  }
+  const handleScan = (data) => {
+    if (data) {
+      setScanning(false);
+      onScan(data.text || data); // Algumas versões retornam um objeto, outras apenas o texto
+    }
+  };
+
+  const handleError = (err) => {
+    console.error("Erro no scanner:", err);
+  };
 
   useEffect(() => {
-    const html5QrcodeScanner = new Html5QrcodeScanner(
-      "reader",
-      {
-        fps: 10,
-        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
-        qrbox: { width: 250, height: 250 },
-      },
-      false
-    );
-
-    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-    // cleanup function when component will unmount
-    return () => {
-      html5QrcodeScanner.clear().catch((error) => {
-        console.error("Failed to clear html5QrcodeScanner. ", error);
-      });
-    };
+    navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" }, // Usa a câmera traseira
+    });
   }, []);
 
-  return <div id={"reader"} />;
+  return (
+    <div>
+      {scanning && (
+        <>
+          <Scanner
+            onScan={handleScan}
+          />
+        </>
+      )}
+      <button onClick={() => setScanning(true)}>Iniciar Scanner</button>
+    </div>
+  );
 };
 
-export default Html5QrcodePlugin;
+export default QRScanner;

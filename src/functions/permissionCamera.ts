@@ -11,3 +11,7 @@ export const requestCameraPermission = async () => {
       alert("Por favor, permita o acesso à câmera nas configurações do navegador.");
     }
   };
+
+
+
+  

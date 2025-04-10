@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import CameraPWA from "./pages/Camera.tsx";
-import Html5QrcodePlugin from "./pages/QrScanner.tsx";
 import { GalleryAccess } from "./pages/TakeTheGalery.tsx";
 import QRScanner from "./pages/QrScanner.tsx";
 

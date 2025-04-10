@@ -6,7 +6,7 @@ import QRScanner from "./pages/QrScanner.tsx";
 
 function App() {
   const [isShowQrCode, setIsShowQrCode] = useState(false);
-    // eslint-disable-next-line
+  // eslint-disable-next-line
   // @ts-ignore
   const [qrCode, setQrCode] = useState("Não foi lido");
   // eslint-disable-next-line
@@ -20,7 +20,20 @@ function App() {
       </button>
       <h3>QR-CODE : {qrCode}</h3>
       {!isShowQrCode && <CameraPWA />}
-      {isShowQrCode && <QRScanner onScan={setQrCode} />}
+
+      {isShowQrCode && (
+        <QRScanner
+          // eslint-disable-next-line
+          // @ts-ignore
+
+          onScan={(result) => {
+            // eslint-disable-next-line
+            // @ts-ignore
+
+            setQrCode(result[0].rawValue);
+          }}
+        />
+      )}
     </>
   );
 }

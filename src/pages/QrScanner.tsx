@@ -1,22 +1,12 @@
 import { Scanner } from "@yudiel/react-qr-scanner";
-import { useEffect, useState } from "react";
-import QrReader from "react-qr-scanner";
-
+import { useLayoutEffect, useState } from "react";
+    // eslint-disable-next-line
+    // @ts-ignore
 const QRScanner = ({ onScan }) => {
   const [scanning, setScanning] = useState(true);
 
-  const handleScan = (data) => {
-    if (data) {
-      setScanning(false);
-      onScan(data.text || data); // Algumas versões retornam um objeto, outras apenas o texto
-    }
-  };
 
-  const handleError = (err) => {
-    console.error("Erro no scanner:", err);
-  };
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     navigator.mediaDevices.getUserMedia({
       video: { facingMode: "environment" }, // Usa a câmera traseira
     });
@@ -27,7 +17,7 @@ const QRScanner = ({ onScan }) => {
       {scanning && (
         <>
           <Scanner
-            onScan={handleScan}
+            onScan={onScan}
           />
         </>
       )}
